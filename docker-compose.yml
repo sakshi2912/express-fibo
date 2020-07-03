@@ -3,11 +3,10 @@ services:
     postgres:
         image: 'postgres:latest'
 
-
     redis:
         image: 'redis:latest'
 
-    server:
+    api:
         build:
             dockerfile: Dockerfile.dev
             context: ./server
