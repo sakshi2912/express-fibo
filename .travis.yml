@@ -8,7 +8,8 @@ before_install:
     - docker build -t sakshi2912/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true sakshi2912/react-test npm test
+    #- docker run -e CI=true sakshi2912/react-test npm test
+    - docker run sakshi2912/react-test npm test -- --coverage
 
 
 after_success:
