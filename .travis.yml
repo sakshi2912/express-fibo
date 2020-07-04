@@ -5,21 +5,21 @@ services:
 language: generic 
     
 before_install:
-    - docker build -t sakshi2912/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t ihskas/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    #- docker run -e CI=true sakshi2912/react-test npm test
-    - docker run sakshi2912/react-test npm test -- --coverage
+    #- docker run -e CI=true ihskas/react-test npm test
+    - docker run ihskas/react-test npm test -- --coverage
 
 
 after_success:
-    - docker build -t sakshi2912/multi-client ./client
-    - docker build -t sakshi2912/multi-nginx ./nginx
-    - docker build -t sakshi2912/multi-server ./server
-    - docker build -t sakshi2912/multi-worker ./worker
+    - docker build -t ihskas/multi-client ./client
+    - docker build -t ihskas/multi-nginx ./nginx
+    - docker build -t ihskas/multi-server ./server
+    - docker build -t ihskas/multi-worker ./worker
     # push images to dockerhub
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    - docker push sakshi2912/multi-client
-    - docker push sakshi2912/multi-nginx
-    - docker push sakshi2912/multi-server
-    - docker push sakshi2912/multi-worker
+    - docker push ihskas/multi-client
+    - docker push ihskas/multi-nginx
+    - docker push ihskas/multi-server
+    - docker push ihskas/multi-worker
