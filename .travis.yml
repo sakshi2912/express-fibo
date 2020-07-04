@@ -1,0 +1,24 @@
+sudo: required
+services:
+    - docker
+
+language: generic 
+    
+before_install:
+    - docker build -t sakshi2912/react-test -f ./client/Dockerfile.dev .
+
+script:
+    - docker run -e CI=true sakshi2912/react-test npm test
+
+
+after_success:
+    - docker build -t sakshi2912/multi-client ./client
+    - docker build -t sakshi2912/multi-nginx ./nginx
+    - docker build -t sakshi2912/multi-server ./server
+    - docker build -t sakshi2912/multi-worker ./worker
+    # push images to dockerhub
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push sakshi2912/multi-client
+    - docker push sakshi2912/multi-nginx
+    - docker push sakshi2912/multi-server
+    - docker push sakshi2912/multi-worker
