@@ -10,7 +10,7 @@ before_install:
 script:
     #- docker run -e CI=true ihskas/react-test npm test
     #- docker run ihskas/react-test npm test -- --coverage
-     - - docker run -e CI=true skete/multi-reacttest npm test
+     - docker run -e CI=true skete/multi-reacttest npm test
     
 
 
