@@ -24,4 +24,4 @@ after_success:
     - docker push ihskas/multi-client
     - docker push ihskas/multi-nginx
     - docker push ihskas/multi-server
-    - docker push ihskas/multi-worker
+    - docker push ihskas/multi-worker 
